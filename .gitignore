@@ -1,0 +1,43 @@
+# Rust / Build
+/target
+
+# IDE
+.idea/
+.vscode/
+
+# ============================================================
+# Echte Daten / lokale Datenbanken — NIEMALS einchecken
+# ============================================================
+Datenbanken/
+# (Verzeichnis "#Backup" — das führende # muss escaped werden, sonst gilt die Zeile als Kommentar)
+\#Backup/
+*.db
+*.db.bak
+*.sqlite
+*.sqlite3
+*.csv
+*.xlsx
+*.xlsm
+
+# ============================================================
+# Build- / Release-Artefakte (gehören in GitHub Releases, nicht in den Quellbaum)
+# ============================================================
+*.zip
+/SEVALSystem-2.0.0-Release/
+**/msi/
+*.msi
+
+# ============================================================
+# Interne / nicht zu veröffentlichende Notizen & Dokumente
+# ============================================================
+claude-fable-5.md
+IT-Ticket-Beschreibung.txt
+readme-IT.md
+readme.txt
+# Bestehende Handbücher enthalten noch alte Pfade/Fragen — vorerst lokal halten,
+# bis sie bereinigt sind. Die zentrale Doku steht in README.md / README_BERECHNUNG.md.
+/docs/
+
+# OS
+.DS_Store
+Thumbs.db

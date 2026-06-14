@@ -1,0 +1,52 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "SEVALSystem",
+  "version": "2.0.0",
+  "identifier": "de.sevalsystem.seval",
+  "build": {
+    "frontendDist": "../ui"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "title": "SEVALSystem",
+        "width": 1400,
+        "height": 900,
+        "minWidth": 1024,
+        "minHeight": 700,
+        "center": true,
+        "resizable": true,
+        "maximized": true,
+        "fullscreen": false,
+        "decorations": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' ipc: tauri:"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "publisher": "Michael Schlosser",
+    "copyright": "Copyright © 2026 Michael Schlosser",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "windows": {
+      "wix": {
+        "language": "de-DE"
+      }
+    },
+    "linux": {
+      "deb": {
+        "depends": []
+      }
+    }
+  }
+}

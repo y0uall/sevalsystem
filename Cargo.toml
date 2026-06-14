@@ -1,0 +1,12 @@
+[workspace]
+members = ["src-tauri"]
+resolver = "2"
+
+# install libglib2.0-dev libgtk-3-dev libwebkit2gtk-4.1-dev libjavascriptcoregtk-4.1-dev librsvg2-dev
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = true
+opt-level = "z"
+strip = true

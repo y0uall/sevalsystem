@@ -1,0 +1,2379 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEVALSystem</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splashScreen" class="splash-screen">
+        <div class="splash-content">
+            <img src="logo-big.png" alt="SEVALSystem" class="splash-logo">
+            <div class="splash-subtitle">Supplier Evaluation System</div>
+            <div class="splash-loader">
+                <div class="splash-loader-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="app">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <img src="logo-small.png" alt="SE" class="sidebar-logo sidebar-logo-small">
+                <img src="logo-big.png" alt="SEVALSystem" class="sidebar-logo-big">
+                <small class="sidebar-version">v2.0.0</small>
+            </div>
+            <nav class="sidebar-nav">
+                <button class="sidebar-nav-btn active" data-view="dashboard" title="Dashboard">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"/>
+                        <rect x="14" y="3" width="7" height="7"/>
+                        <rect x="14" y="14" width="7" height="7"/>
+                        <rect x="3" y="14" width="7" height="7"/>
+                    </svg>
+                    <span class="sidebar-nav-label">Dashboard</span>
+                </button>
+                <button class="sidebar-nav-btn" data-view="bewertung" title="Bewertung">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                    </svg>
+                    <span class="sidebar-nav-label">Bewertung</span>
+                </button>
+                <button class="sidebar-nav-btn" data-view="historie" title="Historie">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12,6 12,12 16,14"/>
+                    </svg>
+                    <span class="sidebar-nav-label">Historie</span>
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="sidebar-settings-btn" id="sidebarSettingsBtn" title="Einstellungen">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>
+                    </svg>
+                    <span class="sidebar-settings-label">Einstellungen</span>
+                </button>
+                <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Seitenleiste ein-/ausklappen">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15,18 9,12 15,6"/>
+                    </svg>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div class="main-wrapper">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Seitenleiste">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <line x1="3" y1="12" x2="21" y2="12"/>
+                        <line x1="3" y1="18" x2="21" y2="18"/>
+                    </svg>
+                </button>
+                <h1 class="header-title" id="headerTitle">Dashboard</h1>
+            </div>
+            <div class="header-right">
+                <button class="icon-btn" id="themeToggle" title="Design wechseln">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="5"/>
+                        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                    </svg>
+                </button>
+                <button class="icon-btn" id="aboutToggle" title="Info">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 16v-4M12 8h.01"/>
+                    </svg>
+                </button>
+                <div class="login-dropdown-wrapper" id="loginDropdownWrapper">
+                    <button class="icon-btn" id="loginToggle" title="Login">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </button>
+                    <span class="login-status" id="loginStatus"></span>
+                    <div class="login-dropdown" id="loginDropdown"></div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Dashboard View -->
+            <section id="dashboardView" class="view active">
+                <div class="dashboard-container">
+                    <!-- Dashboard Header with Timeframe Filter -->
+                    <div class="dashboard-header">
+                        <div class="dashboard-header-left">
+                            <h2 class="dashboard-title">Übersicht</h2>
+                        </div>
+                        <div class="dashboard-header-right">
+                            <div class="dashboard-timeframe-controls">
+                                <div class="dashboard-timeframe-wrapper" id="dashboardTimeframeWrapper">
+                                    <button class="dashboard-timeframe-btn" id="dashboardTimeframeBtn">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                            <line x1="16" y1="2" x2="16" y2="6"/>
+                                            <line x1="8" y1="2" x2="8" y2="6"/>
+                                            <line x1="3" y1="10" x2="21" y2="10"/>
+                                        </svg>
+                                        <span id="dashboardTimeframeLabel">Dieses Quartal</span>
+                                        <svg class="dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="6,9 12,15 18,9"/>
+                                        </svg>
+                                    </button>
+                                    <div class="dashboard-timeframe-dropdown" id="dashboardTimeframeDropdown">
+                                        <div class="custom-dropdown-item" data-value="today">Heute</div>
+                                        <div class="custom-dropdown-item" data-value="week">Diese Woche</div>
+                                        <div class="custom-dropdown-item" data-value="month">Dieser Monat</div>
+                                        <div class="custom-dropdown-item active" data-value="quarter">Dieses Quartal</div>
+                                        <div class="custom-dropdown-item" data-value="year">Dieses Jahr</div>
+                                        <div class="custom-dropdown-divider"></div>
+                                        <div class="custom-dropdown-item" data-value="last_quarter">Letztes Quartal</div>
+                                        <div class="custom-dropdown-item" data-value="last_year">Letztes Jahr</div>
+                                        <div class="custom-dropdown-divider"></div>
+                                        <div class="custom-dropdown-item" data-value="custom">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                                <line x1="16" y1="2" x2="16" y2="6"/>
+                                                <line x1="8" y1="2" x2="8" y2="6"/>
+                                                <line x1="3" y1="10" x2="21" y2="10"/>
+                                            </svg>
+                                            Benutzerdefiniert...
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="dashboard-refresh-btn" id="dashboardRefreshBtn" title="Aktualisieren">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="23 4 23 10 17 10"/>
+                                        <polyline points="1 20 1 14 7 14"/>
+                                        <path d="M3.51 9a9 9 0 0114.13-3.36L23 10"/>
+                                        <path d="M20.49 15a9 9 0 01-14.13 3.36L1 14"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- KPI Cards Row -->
+                    <div class="dashboard-kpi-row">
+                        <div class="dashboard-kpi-card clickable" id="dashboardBewertungenCard">
+                            <div class="kpi-icon success">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                                </svg>
+                            </div>
+                            <div class="kpi-content">
+                                <span class="kpi-label">Bewertungen <span id="dashboardQuartalLabel">Q1 2025</span></span>
+                                <span class="kpi-value" id="dashboardBewertungenQuartal">0</span>
+                            </div>
+                        </div>
+                        <div class="dashboard-kpi-card clickable" id="dashboardDurchschnittCard">
+                            <div class="kpi-icon info">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 20V10"/>
+                                    <path d="M18 20V4"/>
+                                    <path d="M6 20v-4"/>
+                                </svg>
+                            </div>
+                            <div class="kpi-content">
+                                <span class="kpi-label">Durchschnitt</span>
+                                <span class="kpi-value" id="dashboardDurchschnitt">--%</span>
+                            </div>
+                        </div>
+                        <div class="dashboard-kpi-card clickable" id="dashboardLieferantenCard">
+                            <div class="kpi-icon warning">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 010 7.75"/>
+                                </svg>
+                            </div>
+                            <div class="kpi-content">
+                                <span class="kpi-label">Lieferanten</span>
+                                <span class="kpi-value" id="dashboardLieferanten">0</span>
+                            </div>
+                        </div>
+                        <div class="dashboard-kpi-card clickable" id="dashboardKritischeCard">
+                            <div class="kpi-icon danger">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+                                    <line x1="12" y1="9" x2="12" y2="13"/>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                                </svg>
+                            </div>
+                            <div class="kpi-content">
+                                <span class="kpi-label">Kritische Lieferanten</span>
+                                <span class="kpi-value" id="dashboardKritische">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bewertungsfortschritt Widget -->
+                    <div class="dashboard-progress-widget" id="dashboardProgressWidget" style="display: none;">
+                        <div class="progress-widget-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                                <polyline points="22,4 12,14.01 9,11.01"/>
+                            </svg>
+                        </div>
+                        <div class="progress-widget-content">
+                            <div class="progress-widget-header">
+                                <span class="progress-widget-title">Bewertungsfortschritt <span id="progressQuartalLabel">Q1 2026</span></span>
+                                <span class="progress-widget-count" id="progressWidgetCount">0 / 0 Lieferanten</span>
+                            </div>
+                            <div class="progress-widget-bar">
+                                <div class="progress-widget-fill" id="progressWidgetFill" style="width: 0%"></div>
+                            </div>
+                            <span class="progress-widget-percent" id="progressWidgetPercent">0%</span>
+                        </div>
+                    </div>
+
+                    <!-- Missing Evaluations Banner -->
+                    <div class="dashboard-missing-banner" id="dashboardMissingBanner" style="display: none;">
+                        <div class="missing-banner-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="12" y1="8" x2="12" y2="12"/>
+                                <line x1="12" y1="16" x2="12.01" y2="16"/>
+                            </svg>
+                        </div>
+                        <div class="missing-banner-content">
+                            <span class="missing-banner-title">Noch nicht bewertet in <span id="missingQuartalLabel">Q1 2025</span>:</span>
+                            <div class="missing-banner-list" id="missingBannerList">
+                                <!-- Dynamisch gefüllt -->
+                            </div>
+                        </div>
+                        <button class="btn btn-primary missing-banner-btn" id="startBewertungBtn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                            Jetzt bewerten
+                        </button>
+                    </div>
+
+                    <!-- Two Column Layout -->
+                    <div class="dashboard-columns">
+                        <!-- Top Performer -->
+                        <div class="dashboard-card">
+                            <div class="dashboard-card-header">
+                                <h3>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                                    </svg>
+                                    Top Performer
+                                </h3>
+                            </div>
+                            <div class="dashboard-card-content" id="dashboardTopPerformer">
+                                <div class="dashboard-empty">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                                    </svg>
+                                    <p>Keine Bewertungen vorhanden</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Letzte Bewertungen -->
+                        <div class="dashboard-card">
+                            <div class="dashboard-card-header">
+                                <h3>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <polyline points="12,6 12,12 16,14"/>
+                                    </svg>
+                                    Letzte Bewertungen
+                                </h3>
+                            </div>
+                            <div class="dashboard-card-content" id="dashboardLetzteBewertungen">
+                                <div class="dashboard-empty">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
+                                        <rect x="9" y="3" width="6" height="4" rx="1"/>
+                                    </svg>
+                                    <p>Keine Bewertungen vorhanden</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Second Row: Offene Maßnahmen & Bewertungsverteilung -->
+                    <div class="dashboard-columns">
+                        <!-- Offene Maßnahmen (To-Do) -->
+                        <div class="dashboard-card">
+                            <div class="dashboard-card-header">
+                                <h3>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="5" width="6" height="6" rx="1"/>
+                                        <path d="M3 17h6"/>
+                                        <path d="M13 6h8"/>
+                                        <path d="M13 12h8"/>
+                                        <path d="M13 18h8"/>
+                                    </svg>
+                                    Offene Maßnahmen
+                                </h3>
+                            </div>
+                            <div class="dashboard-card-content" id="dashboardOffeneMassnahmen">
+                                <div class="dashboard-empty">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <polyline points="20,6 9,17 4,12"/>
+                                    </svg>
+                                    <p>Keine offenen Maßnahmen</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bewertungsverteilung -->
+                        <div class="dashboard-card">
+                            <div class="dashboard-card-header">
+                                <h3>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21.21 15.89A10 10 0 118 2.83"/>
+                                        <path d="M22 12A10 10 0 0012 2v10z"/>
+                                    </svg>
+                                    Bewertungsverteilung (Quartal)
+                                </h3>
+                            </div>
+                            <div class="dashboard-card-content dashboard-chart-content">
+                                <div class="dashboard-donut-wrapper" id="dashboardDonutWrapper">
+                                    <canvas id="dashboardDonutChart"></canvas>
+                                </div>
+                                <div class="dashboard-donut-legend" id="dashboardDonutLegend">
+                                    <div class="donut-legend-item">
+                                        <span class="donut-legend-color success"></span>
+                                        <span class="donut-legend-label">Grün</span>
+                                        <span class="donut-legend-value" id="donutGruen">0</span>
+                                    </div>
+                                    <div class="donut-legend-item">
+                                        <span class="donut-legend-color warning"></span>
+                                        <span class="donut-legend-label">Gelb</span>
+                                        <span class="donut-legend-value" id="donutGelb">0</span>
+                                    </div>
+                                    <div class="donut-legend-item">
+                                        <span class="donut-legend-color danger"></span>
+                                        <span class="donut-legend-label">Rot</span>
+                                        <span class="donut-legend-value" id="donutRot">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ziele & Sollwerte Widget -->
+                    <div class="dashboard-card dashboard-card-full" id="dashboardZieleWidget" style="display: none;">
+                        <div class="dashboard-card-header">
+                            <h3>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <circle cx="12" cy="12" r="6"/>
+                                    <circle cx="12" cy="12" r="2"/>
+                                </svg>
+                                Ziele & Sollwerte
+                            </h3>
+                        </div>
+                        <div class="dashboard-card-content">
+                            <div class="ziele-summary-bar" id="zieleSummaryBar"></div>
+                            <div class="ziele-details-list" id="zieleDetailsList"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bewertung View -->
+            <section id="bewertungView" class="view">
+                <!-- Controls -->
+                <div class="controls-bar">
+                    <div class="control-group">
+                        <label>SE-Team <span class="required">*</span></label>
+                        <div class="input-with-btn">
+                            <div class="custom-dropdown-wrapper" id="seTeamWrapper">
+                                <input type="text" id="seTeamInput" class="input se-team-input" placeholder="SE-Team eingeben" autocomplete="off" required>
+                                <div class="custom-dropdown" id="seTeamDropdown">
+                                    <!-- Dynamisch gefüllt -->
+                                </div>
+                            </div>
+                            <button class="icon-btn small member-only-section" id="addSeTeamBtn" title="SE-Teams verwalten">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"/>
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label>Lieferant</label>
+                        <div class="input-with-btn">
+                            <div class="custom-dropdown-wrapper" id="lieferantWrapper">
+                                <input type="text" id="lieferantInput" class="input lieferant-input" readonly placeholder="Lieferant wählen">
+                                <input type="hidden" id="lieferantSelect" value="">
+                                <div class="custom-dropdown" id="lieferantDropdown">
+                                    <!-- Dynamisch gefüllt -->
+                                </div>
+                            </div>
+                            <button class="icon-btn small member-only-section" id="addLieferantBtn" title="Lieferanten verwalten">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"/>
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label>Datum</label>
+                        <div class="date-picker-wrapper" id="datePickerWrapper">
+                            <input type="text" id="datumInput" class="input date-picker-input" readonly placeholder="Datum wählen">
+                            <div class="date-picker-dropdown" id="datePickerDropdown">
+                                <div class="date-picker-header">
+                                    <button type="button" id="datePrevMonth">&lt;</button>
+                                    <span class="date-picker-title" id="datePickerTitle">Januar 2024</span>
+                                    <button type="button" id="dateNextMonth">&gt;</button>
+                                </div>
+                                <div class="date-picker-weekdays">
+                                    <span class="date-picker-weekday">Mo</span>
+                                    <span class="date-picker-weekday">Di</span>
+                                    <span class="date-picker-weekday">Mi</span>
+                                    <span class="date-picker-weekday">Do</span>
+                                    <span class="date-picker-weekday">Fr</span>
+                                    <span class="date-picker-weekday">Sa</span>
+                                    <span class="date-picker-weekday">So</span>
+                                </div>
+                                <div class="date-picker-days" id="datePickerDays">
+                                    <!-- Dynamisch gefüllt -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label>Bestellnummer</label>
+                        <textarea id="bestellnummerInput" class="input bestellnummer-textarea" placeholder="Optional" rows="1"></textarea>
+                    </div>
+                    <div class="control-group progress-group">
+                        <label>Fortschritt</label>
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                            <span class="progress-text" id="progressText">0/12</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vorquartal Maßnahmen Panel -->
+                <div class="vorquartal-panel" id="vorquartalPanel" style="display: none;">
+                    <div class="vorquartal-panel-header">
+                        <div class="vorquartal-panel-title">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
+                            </svg>
+                            <span>Maßnahmen aus Vorquartal (<span id="vorquartalQuartal">Q4 2024</span>)</span>
+                        </div>
+                        <button class="vorquartal-close-btn" id="vorquartalCloseBtn" title="Schließen">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"/>
+                                <line x1="6" y1="6" x2="18" y2="18"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="vorquartal-content">
+                        <div class="vorquartal-info">
+                            <span class="vorquartal-date" id="vorquartalDate">-</span>
+                            <span class="vorquartal-result" id="vorquartalResult">--%</span>
+                        </div>
+                        <div class="vorquartal-text" id="vorquartalText">
+                            Keine Maßnahmen vorhanden
+                        </div>
+                        <div class="vorquartal-checkbox">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="vorquartalUmgesetzt">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">Maßnahmen wurden umgesetzt</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Questions -->
+                <div class="questions-container" id="questionsContainer">
+                    <!-- Dynamisch gefüllt -->
+                </div>
+
+                <!-- Actions -->
+                <!-- Maßnahmen Panel (ausklappbar) -->
+                <div class="massnahmen-panel" id="massnahmenPanel">
+                    <div class="massnahmen-panel-header">
+                        <div class="massnahmen-panel-title">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                            </svg>
+                            <span>Maßnahmen für nächstes Quartal</span>
+                        </div>
+                        <button class="massnahmen-close-btn" id="massnahmenCloseBtn" title="Schließen">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"/>
+                                <line x1="6" y1="6" x2="18" y2="18"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <textarea id="massnahmenInput" class="input massnahmen-textarea" placeholder="Freitext-Maßnahmen (optional, zusätzlich zu strukturierten Maßnahmen)..." style="display:none;"></textarea>
+                    <div class="massnahmen-liste" id="massnahmenListe">
+                        <!-- Dynamisch gefüllt -->
+                    </div>
+                    <div class="massnahmen-add-form" id="massnahmenAddForm">
+                        <div class="massnahmen-form-row">
+                            <input type="text" id="massnahmeDesc" class="input" placeholder="Maßnahme beschreiben...">
+                            <input type="text" id="massnahmeVerantw" class="input massnahme-verantw" placeholder="Verantwortlich">
+                            <input type="date" id="massnahmeFaellig" class="input massnahme-date">
+                            <button class="btn btn-primary btn-sm" id="massnahmeAddBtn" title="Maßnahme hinzufügen">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;">
+                                    <line x1="12" y1="5" x2="12" y2="19"/>
+                                    <line x1="5" y1="12" x2="19" y2="12"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="actions-bar">
+                    <button class="btn btn-secondary" id="resetBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 12a9 9 0 109-9 9.75 9.75 0 00-6.74 2.74L3 8"/>
+                            <path d="M3 3v5h5"/>
+                        </svg>
+                        Zurücksetzen
+                    </button>
+                    <button class="btn btn-secondary" id="toggleGroupsBtn" title="Alle Gruppen ein-/ausklappen">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="toggleGroupsIcon">
+                            <path d="M19 9l-7 7-7-7"/>
+                        </svg>
+                        <span id="toggleGroupsText">Einklappen</span>
+                    </button>
+                    <div class="result-display" id="resultDisplay">
+                        <span class="result-label">Ergebnis:</span>
+                        <span class="result-value" id="resultValue">--%</span>
+                    </div>
+                    <button class="btn btn-warning" id="massnahmenBtn" title="Maßnahmen für nächstes Quartal">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                            <polyline points="14,2 14,8 20,8"/>
+                            <line x1="12" y1="18" x2="12" y2="12"/>
+                            <line x1="9" y1="15" x2="15" y2="15"/>
+                        </svg>
+                        <span class="btn-text">Maßnahme</span>
+                        <span class="massnahmen-indicator" id="massnahmenIndicator"></span>
+                    </button>
+                    <button class="btn btn-primary" id="saveBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/>
+                            <polyline points="17,21 17,13 7,13 7,21"/>
+                            <polyline points="7,3 7,8 15,8"/>
+                        </svg>
+                        Speichern
+                    </button>
+                </div>
+            </section>
+
+            <!-- Historie View -->
+            <section id="historieView" class="view">
+                <div class="historie-controls">
+                    <div class="control-group search-group">
+                        <label>SEVALSystem-ID</label>
+                        <div class="search-input-wrapper">
+                            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            </svg>
+                            <input type="text" id="sevalIdSearch" class="input" placeholder="z.B. 1337" maxlength="12">
+                            <button class="search-clear-btn" id="sevalIdSearchClear" title="Suche löschen">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="18" y1="6" x2="6" y2="18"/>
+                                    <line x1="6" y1="6" x2="18" y2="18"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label>Lieferant</label>
+                        <div class="custom-dropdown-wrapper" id="historieFilterWrapper">
+                            <input type="text" id="historieFilterInput" class="input" readonly placeholder="Alle" value="Alle">
+                            <input type="hidden" id="historieFilter" value="">
+                            <div class="custom-dropdown" id="historieFilterDropdown">
+                                <!-- Dynamisch gefüllt -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label>SE-Team</label>
+                        <div class="custom-dropdown-wrapper" id="historieSeTeamFilterWrapper">
+                            <input type="text" id="historieSeTeamFilterInput" class="input" readonly placeholder="Alle" value="Alle">
+                            <input type="hidden" id="historieSeTeamFilter" value="">
+                            <div class="custom-dropdown" id="historieSeTeamFilterDropdown">
+                                <!-- Dynamisch gefüllt -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label>Jahr</label>
+                        <div class="custom-dropdown-wrapper" id="historieJahrFilterWrapper">
+                            <input type="text" id="historieJahrFilterInput" class="input" readonly placeholder="Alle" value="Alle">
+                            <input type="hidden" id="historieJahrFilter" value="">
+                            <div class="custom-dropdown" id="historieJahrFilterDropdown">
+                                <!-- Dynamisch gefüllt -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label>Quartal</label>
+                        <div class="custom-dropdown-wrapper" id="historieQuartalFilterWrapper">
+                            <input type="text" id="historieQuartalFilterInput" class="input" readonly placeholder="Alle" value="Alle">
+                            <input type="hidden" id="historieQuartalFilter" value="">
+                            <div class="custom-dropdown" id="historieQuartalFilterDropdown">
+                                <!-- Dynamisch gefüllt -->
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary filter-btn" id="resetHistorieFilters" data-tooltip="Filter löschen">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                        <span class="btn-text">Filter löschen</span>
+                    </button>
+                    <button class="btn btn-secondary filter-btn" id="refreshHistorie" data-tooltip="Aktualisieren">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M23 4v6h-6M1 20v-6h6"/>
+                            <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+                        </svg>
+                        <span class="btn-text">Aktualisieren</span>
+                    </button>
+                    <span class="historie-count" id="historieCount">0 Einträge</span>
+
+                    <!-- View Toggle Buttons -->
+                    <div class="view-toggle-wrapper">
+                        <!-- Dropdown Trigger für kleine Fenster -->
+                        <button class="view-toggle-dropdown-btn" id="viewToggleDropdownBtn" title="Ansicht wählen">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                <line x1="3" y1="9" x2="21" y2="9"/>
+                                <line x1="3" y1="15" x2="21" y2="15"/>
+                                <line x1="9" y1="3" x2="9" y2="21"/>
+                            </svg>
+                            <svg class="dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <!-- Normale Horizontal-Ansicht -->
+                        <div class="historie-view-toggle view-toggle">
+                            <button class="view-toggle-btn active" data-historie-view="table" title="Tabellenansicht">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                    <line x1="3" y1="9" x2="21" y2="9"/>
+                                    <line x1="3" y1="15" x2="21" y2="15"/>
+                                    <line x1="9" y1="3" x2="9" y2="21"/>
+                                </svg>
+                                <span class="btn-text">Tabelle</span>
+                            </button>
+                            <button class="view-toggle-btn" data-historie-view="timeline" title="Timeline-Ansicht">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12,6 12,12 16,14"/>
+                                </svg>
+                                <span class="btn-text">Timeline</span>
+                            </button>
+                            <button class="view-toggle-btn" data-historie-view="trends" title="Trend-Analyse">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+                                </svg>
+                                <span class="btn-text">Trends</span>
+                            </button>
+                            <button class="view-toggle-btn" data-historie-view="compare" title="Vergleich">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="7" height="18" rx="1"/>
+                                    <rect x="14" y="3" width="7" height="18" rx="1"/>
+                                </svg>
+                                <span class="btn-text">Vergleich</span>
+                            </button>
+                            <button class="view-toggle-btn admin-only-tab" data-historie-view="audit" title="Audit-Log">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                    <line x1="16" y1="13" x2="8" y2="13"/>
+                                    <line x1="16" y1="17" x2="8" y2="17"/>
+                                </svg>
+                                <span class="btn-text">Audit-Log</span>
+                            </button>
+                            <button class="btn-export" id="batchPdfBtn" title="Quartalsbericht als PDF generieren">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                </svg>
+                                <span class="btn-text">Quartalsbericht</span>
+                            </button>
+                            <button class="btn-export btn-import-csv member-only-section" id="csvImportOpenBtn" title="CSV-Daten importieren">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                                    <polyline points="17,8 12,3 7,8"/>
+                                    <line x1="12" y1="3" x2="12" y2="15"/>
+                                </svg>
+                                <span class="btn-text">CSV Import</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table View (default) -->
+                <div class="historie-view-content active" id="historieTableView">
+                <div class="historie-table-container">
+                    <table class="historie-table" id="historieTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Datum</th>
+                                <th>Lieferant</th>
+                                <th>SE-Team</th>
+                                <th>Ergebnis</th>
+                                <th>Trend</th>
+                                <th>Aktionen</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historieBody">
+                            <!-- Dynamisch gefüllt -->
+                        </tbody>
+                    </table>
+                    <div class="historie-empty" id="historieEmpty">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/>
+                            <rect x="9" y="3" width="6" height="4" rx="1"/>
+                        </svg>
+                        <p>Keine Bewertungen vorhanden</p>
+                        <button class="btn btn-primary" id="newFromHistorie">Neue Bewertung erstellen</button>
+                    </div>
+                    <!-- Pagination -->
+                    <div class="historie-pagination" id="historiePagination">
+                        <div class="pagination-info" id="paginationInfo"></div>
+                        <div class="pagination-controls" id="paginationControls"></div>
+                        <div class="pagination-size">
+                            <label>Pro Seite:</label>
+                            <select id="historiePageSize" class="input pagination-size-select">
+                                <option value="25">25</option>
+                                <option value="50" selected>50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <!-- Timeline View -->
+                <div class="historie-view-content" id="historieTimelineView">
+                    <div class="timeline-container" id="timelineContainer">
+                        <!-- Dynamisch gefüllt -->
+                    </div>
+                    <div class="historie-empty" id="timelineEmpty">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12,6 12,12 16,14"/>
+                        </svg>
+                        <p>Keine Bewertungen für Timeline vorhanden</p>
+                    </div>
+                </div>
+
+                <!-- Trends View -->
+                <div class="historie-view-content" id="historieTrendsView">
+                    <div class="trends-container">
+                        <div class="trends-header">
+                            <div class="control-group">
+                                <label>Lieferant für Trend</label>
+                                <div class="custom-dropdown-wrapper" id="trendLieferantWrapper">
+                                    <input type="text" id="trendLieferantInput" class="input" readonly placeholder="Alle Lieferanten">
+                                    <input type="hidden" id="trendLieferantFilter" value="">
+                                    <div class="custom-dropdown" id="trendLieferantDropdown">
+                                        <!-- Dynamisch gefüllt -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="export-buttons">
+                                <button class="btn-export" id="exportChartsPng" title="Charts als PNG exportieren">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                                        <polyline points="21,15 16,10 5,21"/>
+                                    </svg>
+                                    Charts als PNG
+                                </button>
+                                <button class="btn-export" id="exportDataCsv" title="Daten als CSV exportieren">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                        <polyline points="14,2 14,8 20,8"/>
+                                        <line x1="16" y1="13" x2="8" y2="13"/>
+                                        <line x1="16" y1="17" x2="8" y2="17"/>
+                                        <polyline points="10,9 9,9 8,9"/>
+                                    </svg>
+                                    Daten als CSV
+                                </button>
+                                <button class="btn-export" id="exportDataXlsx" title="Daten als Excel exportieren">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                        <polyline points="14,2 14,8 20,8"/>
+                                        <line x1="8" y1="13" x2="16" y2="13"/>
+                                        <line x1="8" y1="17" x2="16" y2="17"/>
+                                    </svg>
+                                    Excel (XLSX)
+                                </button>
+                            </div>
+                        </div>
+                        <div class="trends-charts">
+                            <div class="trend-chart-card">
+                                <div class="trend-chart-header">
+                                    <h4>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+                                        </svg>
+                                        Bewertungsentwicklung über Zeit
+                                    </h4>
+                                    <div class="multi-select-wrapper" id="multiSelectWrapper">
+                                        <div class="multi-select-input" id="multiSelectInput">
+                                            <span class="multi-select-input-text">Lieferanten wählen...</span>
+                                            <svg class="multi-select-input-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polyline points="6,9 12,15 18,9"/>
+                                            </svg>
+                                        </div>
+                                        <div class="multi-select-dropdown" id="multiSelectDropdown">
+                                            <!-- Dynamisch gefüllt -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chart-wrapper">
+                                    <canvas id="trendLineChart"></canvas>
+                                </div>
+                                <div class="chart-legend-custom" id="chartLegendCustom">
+                                    <!-- Dynamisch gefüllt -->
+                                </div>
+                            </div>
+                            <div class="trend-chart-card">
+                                <h4>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="12" width="4" height="9"/>
+                                        <rect x="10" y="8" width="4" height="13"/>
+                                        <rect x="17" y="4" width="4" height="17"/>
+                                    </svg>
+                                    Durchschnitt pro Lieferant
+                                </h4>
+                                <div class="chart-wrapper">
+                                    <canvas id="trendBarChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Kategorie-Trend Chart (Phase 3.1) -->
+                        <div class="trend-chart-card kategorie-trend-section" id="kategorieTrendSection" style="display: none;">
+                            <div class="trend-chart-header">
+                                <h4>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M2 20h20"/>
+                                        <polyline points="4,16 8,10 12,14 16,6 20,12"/>
+                                    </svg>
+                                    Kategorie-Trend
+                                    <span class="kategorie-trend-lieferant" id="kategorieTrendLieferant"></span>
+                                </h4>
+                            </div>
+                            <div class="chart-wrapper">
+                                <canvas id="kategorieTrendChart"></canvas>
+                            </div>
+                            <div class="chart-legend-custom" id="kategorieTrendLegend"></div>
+                        </div>
+                        <div class="trends-stats" id="trendsStats">
+                            <!-- Dynamisch gefüllt -->
+                        </div>
+                        <!-- SE-Team-Vergleich Heatmap (Phase 3.2) -->
+                        <div class="se-team-vergleich-section" id="seTeamVergleichSection" style="display: none;">
+                            <div class="trend-chart-card">
+                                <h4>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="3" width="7" height="7"/>
+                                        <rect x="14" y="3" width="7" height="7"/>
+                                        <rect x="3" y="14" width="7" height="7"/>
+                                        <rect x="14" y="14" width="7" height="7"/>
+                                    </svg>
+                                    SE-Team-Vergleich
+                                </h4>
+                                <div class="se-team-heatmap-wrapper" id="seTeamHeatmapWrapper">
+                                    <!-- Dynamisch gefüllt -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="historie-empty" id="trendsEmpty">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/>
+                        </svg>
+                        <p>Keine Daten für Trend-Analyse vorhanden</p>
+                    </div>
+                </div>
+
+                <!-- Compare View -->
+                <div class="historie-view-content" id="historieCompareView">
+                    <div class="compare-container">
+                        <!-- Einklappbarer Auswahl-Bereich -->
+                        <div class="compare-selection-header" id="compareSelectionHeader">
+                            <span class="compare-selection-title">Auswahl</span>
+                            <button class="compare-collapse-btn" id="compareCollapseBtn" title="Auswahl ein-/ausklappen">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="compareCollapseIcon">
+                                    <path d="M19 9l-7 7-7-7"/>
+                                </svg>
+                                <span id="compareCollapseText">Einklappen</span>
+                            </button>
+                        </div>
+                        <div class="compare-selection-body" id="compareSelectionBody">
+                            <!-- Mode-Toggle: Lokal vs. Cross-DB -->
+                            <div class="compare-mode-toggle">
+                                <button class="compare-mode-btn active" id="compareModeLocal">Innerhalb Datenbank</button>
+                                <button class="compare-mode-btn" id="compareModeCrossDb">Datenbank-übergreifend</button>
+                            </div>
+
+                            <!-- Cross-DB Panel (zunächst versteckt) -->
+                            <div class="cross-db-panel" id="crossDbPanel" style="display:none;">
+                            <div class="cross-db-sources" id="crossDbSourceList">
+                                <!-- Dynamisch: Chips der hinzugefügten DBs -->
+                            </div>
+                            <button class="btn btn-secondary" id="crossDbAddBtn">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                                    <path d="M12 5v14M5 12h14"/>
+                                </svg>
+                                Datenbank hinzufügen
+                            </button>
+                            <button class="dashboard-refresh-btn" id="crossDbRefreshBtn" title="Vergleich aktualisieren">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="23 4 23 10 17 10"/>
+                                    <polyline points="1 20 1 14 7 14"/>
+                                    <path d="M3.51 9a9 9 0 0114.13-3.36L23 10"/>
+                                    <path d="M20.49 15a9 9 0 01-14.13 3.36L1 14"/>
+                                </svg>
+                            </button>
+                            <div class="control-group" id="crossDbSupplierSelect" style="display:none;">
+                                <label>Lieferant für Vergleich</label>
+                                <div class="custom-dropdown-wrapper" id="crossDbSupplierWrapper">
+                                    <input type="text" id="crossDbSupplierInput" class="input" readonly placeholder="Lieferant wählen...">
+                                    <div class="custom-dropdown" id="crossDbSupplierDropdown">
+                                        <!-- Dynamisch: gemeinsame Lieferanten -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                            <div class="compare-header" id="localCompareHeader">
+                                <div class="compare-selection">
+                                <div class="control-group">
+                                    <label>Lieferant 1</label>
+                                    <div class="custom-dropdown-wrapper" id="compare1Wrapper">
+                                        <input type="text" id="compare1Input" class="input" readonly placeholder="Lieferant wählen">
+                                        <input type="hidden" id="compare1Filter" value="">
+                                        <div class="custom-dropdown" id="compare1Dropdown">
+                                            <!-- Dynamisch gefüllt -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="compare-vs">VS</div>
+                                <div class="control-group">
+                                    <label>Lieferant 2</label>
+                                    <div class="custom-dropdown-wrapper" id="compare2Wrapper">
+                                        <input type="text" id="compare2Input" class="input" readonly placeholder="Lieferant wählen">
+                                        <input type="hidden" id="compare2Filter" value="">
+                                        <div class="custom-dropdown" id="compare2Dropdown">
+                                            <!-- Dynamisch gefüllt -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div><!-- Ende compare-selection-body -->
+
+                        <!-- Cross-DB Heatmap (Überblick aller Lieferanten × SE-Teams) -->
+                        <div class="cross-db-heatmap-section" id="crossDbHeatmapSection" style="display:none;">
+                            <div class="dashboard-card">
+                                <div class="dashboard-card-header">
+                                    <h3>Lieferanten-Überblick über alle SE-Teams</h3>
+                                </div>
+                                <div class="dashboard-card-content cross-db-heatmap-content">
+                                    <div id="crossDbHeatmapTable"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cross-DB Ergebnisbereich (zunächst versteckt) -->
+                        <div class="cross-db-result" id="crossDbResult" style="display:none;">
+                            <div class="cross-db-detail-charts" id="crossDbDetailCharts">
+                                <div class="cross-db-charts-row">
+                                    <div class="cross-db-bar-card compare-card">
+                                        <div class="compare-card-header">
+                                            <span class="compare-card-title">Kategorien-Vergleich</span>
+                                        </div>
+                                        <div class="cross-db-bar-wrapper">
+                                            <canvas id="crossDbCategoryChart"></canvas>
+                                        </div>
+                                    </div>
+                                    <div class="cross-db-bar-card compare-card">
+                                        <div class="compare-card-header">
+                                            <span class="compare-card-title">Trend-Verlauf</span>
+                                        </div>
+                                        <div class="cross-db-bar-wrapper">
+                                            <canvas id="crossDbTrendChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="compare-content" id="compareContent">
+                            <div class="compare-cards">
+                                <div class="compare-card" id="compareCard1">
+                                    <div class="compare-card-header">
+                                        <span class="compare-card-title" id="compareTitle1">Lieferant 1</span>
+                                        <span class="compare-card-score" id="compareScore1">--%</span>
+                                    </div>
+                                    <div class="compare-card-body" id="compareBody1">
+                                        <p class="compare-placeholder">Wählen Sie einen Lieferanten</p>
+                                    </div>
+                                </div>
+                                <div class="compare-chart-container">
+                                    <canvas id="compareRadarChart"></canvas>
+                                </div>
+                                <div class="compare-card" id="compareCard2">
+                                    <div class="compare-card-header">
+                                        <span class="compare-card-title" id="compareTitle2">Lieferant 2</span>
+                                        <span class="compare-card-score" id="compareScore2">--%</span>
+                                    </div>
+                                    <div class="compare-card-body" id="compareBody2">
+                                        <p class="compare-placeholder">Wählen Sie einen Lieferanten</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="historie-empty" id="compareEmpty">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="3" y="3" width="7" height="18" rx="1"/>
+                            <rect x="14" y="3" width="7" height="18" rx="1"/>
+                        </svg>
+                        <p>Wählen Sie zwei Lieferanten zum Vergleichen</p>
+                    </div>
+                </div>
+
+                <!-- Audit Log View (Admin only) -->
+                <div class="historie-view-content" id="historieAuditView">
+                    <div class="audit-filter-toolbar">
+                        <div class="audit-filter-buttons">
+                            <button class="audit-filter-btn active" data-audit-table-filter="all">Alle</button>
+                            <button class="audit-filter-btn filter-create" data-audit-table-filter="CREATE">Erstellt</button>
+                            <button class="audit-filter-btn filter-update" data-audit-table-filter="UPDATE">Geändert</button>
+                            <button class="audit-filter-btn filter-delete" data-audit-table-filter="DELETE">Gelöscht</button>
+                            <button class="audit-filter-btn filter-login" data-audit-table-filter="LOGIN_SUCCESS">Login</button>
+                            <button class="audit-filter-btn filter-view" data-audit-table-filter="VIEW">Angesehen</button>
+                        </div>
+                        <div class="audit-filter-search">
+                            <svg class="audit-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+                            </svg>
+                            <input type="text" class="audit-search-input" id="auditTableSearch" placeholder="Suchen...">
+                        </div>
+                        <span class="audit-filter-count" id="auditTableCount"></span>
+                    </div>
+                    <div class="audit-table-container">
+                        <table class="historie-table" id="auditTable">
+                            <thead>
+                                <tr>
+                                    <th>Zeitpunkt</th>
+                                    <th>Benutzer</th>
+                                    <th>Aktion</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                            <tbody id="auditTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="historie-empty" id="auditEmpty">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                            <polyline points="14,2 14,8 20,8"/>
+                        </svg>
+                        <p>Keine Einträge vorhanden</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings View -->
+            <section id="settingsView" class="view">
+                <div class="settings-container">
+
+                    <!-- Spalte 1: Profil + Benutzerverwaltung -->
+                    <div class="settings-column" id="settingsCol1">
+                        <div class="settings-card" id="settingsProfilCard">
+                            <div class="settings-card-header">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                                <h3>Profil</h3>
+                            </div>
+                            <div class="settings-card-body">
+                                <div class="settings-info-row">
+                                    <span class="settings-info-label">Benutzer</span>
+                                    <span class="settings-info-value" id="settingsUsername">—</span>
+                                </div>
+                                <div class="settings-info-row">
+                                    <span class="settings-info-label">Rolle</span>
+                                    <span class="settings-info-value" id="settingsUserRole">—</span>
+                                </div>
+                                <button class="btn btn-ghost" id="settingsChangePasswordBtn">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;">
+                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                        <path d="M7 11V7a5 5 0 0110 0v4"/>
+                                    </svg>
+                                    Passwort ändern
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="settings-card admin-only-menu" id="settingsUserMgmtCard" style="display: none;">
+                            <div class="settings-card-header">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                    <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+                                    <path d="M16 3.13a4 4 0 010 7.75"/>
+                                </svg>
+                                <h3>Benutzerverwaltung</h3>
+                            </div>
+                            <div class="settings-card-body">
+                                <p class="settings-hint">Benutzer anlegen, bearbeiten und Rollen vergeben.</p>
+                                <button class="btn btn-secondary" id="settingsUserMgmtBtn">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;">
+                                        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                                        <circle cx="9" cy="7" r="4"/>
+                                        <line x1="23" y1="11" x2="17" y2="11"/>
+                                        <line x1="20" y1="8" x2="20" y2="14"/>
+                                    </svg>
+                                    Benutzer verwalten
+                                </button>
+                            </div>
+                        </div>
+                        <div class="settings-card admin-only-menu" id="settingsZieleCard" style="display: none;">
+                            <div class="settings-card-header">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <circle cx="12" cy="12" r="6"/>
+                                    <circle cx="12" cy="12" r="2"/>
+                                </svg>
+                                <h3>Ziele & Sollwerte</h3>
+                            </div>
+                            <div class="settings-card-body">
+                                <p class="settings-hint">Sollwerte pro Lieferant und Quartal festlegen. Dashboard zeigt Ist-vs-Soll Vergleich.</p>
+                                <button class="btn btn-secondary" id="settingsZieleBtn">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <circle cx="12" cy="12" r="6"/>
+                                        <circle cx="12" cy="12" r="2"/>
+                                    </svg>
+                                    Ziele verwalten
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spalte 2: Schwellenwerte + Datenbank -->
+                    <div class="settings-column" id="settingsCol2">
+                        <div class="settings-card admin-only-menu" id="settingsThresholdCard" style="display: none;">
+                            <div class="settings-card-header">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="4" y1="21" x2="4" y2="14"/>
+                                    <line x1="4" y1="10" x2="4" y2="3"/>
+                                    <line x1="12" y1="21" x2="12" y2="12"/>
+                                    <line x1="12" y1="8" x2="12" y2="3"/>
+                                    <line x1="20" y1="21" x2="20" y2="16"/>
+                                    <line x1="20" y1="12" x2="20" y2="3"/>
+                                    <line x1="1" y1="14" x2="7" y2="14"/>
+                                    <line x1="9" y1="8" x2="15" y2="8"/>
+                                    <line x1="17" y1="16" x2="23" y2="16"/>
+                                </svg>
+                                <h3>Schwellenwerte</h3>
+                            </div>
+                            <div class="settings-card-body">
+                                <p class="settings-hint">Prozentwerte für die Farbcodierung der Ergebnisse.</p>
+                                <div class="settings-thresholds">
+                                    <div class="threshold-row">
+                                        <div class="threshold-color success"></div>
+                                        <label>Grün ab:</label>
+                                        <input type="number" id="svThresholdSuccess" class="input threshold-input" min="0" max="100" step="1">
+                                        <span class="threshold-unit">%</span>
+                                    </div>
+                                    <div class="threshold-row">
+                                        <div class="threshold-color warning"></div>
+                                        <label>Gelb ab:</label>
+                                        <input type="number" id="svThresholdWarning" class="input threshold-input" min="0" max="100" step="1">
+                                        <span class="threshold-unit">%</span>
+                                    </div>
+                                    <div class="threshold-row">
+                                        <div class="threshold-color danger"></div>
+                                        <label>Rot unter:</label>
+                                        <span class="threshold-auto" id="svThresholdDanger">50%</span>
+                                    </div>
+                                </div>
+                                <div class="settings-preview">
+                                    <label>Vorschau:</label>
+                                    <div class="settings-preview-bars">
+                                        <div class="preview-bar">
+                                            <div class="preview-fill success" id="svPreviewSuccess"></div>
+                                            <span class="preview-label">85%</span>
+                                        </div>
+                                        <div class="preview-bar">
+                                            <div class="preview-fill warning" id="svPreviewWarning"></div>
+                                            <span class="preview-label">60%</span>
+                                        </div>
+                                        <div class="preview-bar">
+                                            <div class="preview-fill danger" id="svPreviewDanger"></div>
+                                            <span class="preview-label">35%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary" id="svSaveThresholds">Speichern</button>
+                            </div>
+                        </div>
+
+                        <div class="settings-card" id="settingsDbCard">
+                            <div class="settings-card-header">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <ellipse cx="12" cy="5" rx="9" ry="3"/>
+                                    <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+                                    <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+                                </svg>
+                                <h3>Datenbank</h3>
+                            </div>
+                            <div class="settings-card-body">
+                                <div class="settings-info-row stacked">
+                                    <span class="settings-info-label">Aktueller Pfad</span>
+                                    <span class="settings-info-value settings-db-path" id="settingsDbPath">—</span>
+                                </div>
+                                <button class="btn btn-ghost" id="settingsSwitchDbBtn">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;">
+                                        <polyline points="1,4 1,10 7,10"/>
+                                        <path d="M3.51 15a9 9 0 102.13-9.36L1 10"/>
+                                    </svg>
+                                    Datenbank wechseln
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spalte 3: Dashboard & Limits + Datensicherung -->
+                    <div class="settings-column" id="settingsCol3">
+                        <div class="settings-card admin-only-menu" id="settingsLimitsCard" style="display: none;">
+                            <div class="settings-card-header">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="7" height="7"/>
+                                    <rect x="14" y="3" width="7" height="7"/>
+                                    <rect x="14" y="14" width="7" height="7"/>
+                                    <rect x="3" y="14" width="7" height="7"/>
+                                </svg>
+                                <h3>Dashboard & Limits</h3>
+                            </div>
+                            <div class="settings-card-body">
+                                <div class="settings-field">
+                                    <label for="svDashboardTopLimit">Top-Performer Anzahl</label>
+                                    <input type="number" id="svDashboardTopLimit" min="1" max="50" value="5">
+                                </div>
+                                <div class="settings-field">
+                                    <label for="svDashboardRecentLimit">Letzte Bewertungen Anzahl</label>
+                                    <input type="number" id="svDashboardRecentLimit" min="1" max="50" value="5">
+                                </div>
+                                <div class="settings-field">
+                                    <label for="svDashboardCriticalLimit">Kritische Lieferanten Limit</label>
+                                    <input type="number" id="svDashboardCriticalLimit" min="1" max="50" value="10">
+                                </div>
+                                <div class="settings-field">
+                                    <label for="svBackupRetentionDays">Backup-Aufbewahrung (Tage)</label>
+                                    <input type="number" id="svBackupRetentionDays" min="1" max="365" value="30">
+                                </div>
+                                <button class="btn btn-primary" id="svSaveLimits">Speichern</button>
+                            </div>
+                        </div>
+
+                        <div class="settings-card admin-only-menu" id="settingsBackupCard" style="display: none;">
+                            <div class="settings-card-header">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                                    <polyline points="7,10 12,15 17,10"/>
+                                    <line x1="12" y1="15" x2="12" y2="3"/>
+                                </svg>
+                                <h3>Datensicherung</h3>
+                            </div>
+                            <div class="settings-card-body">
+                                <p class="settings-hint">Automatische tägliche Sicherung. Manuell erstellen oder wiederherstellen.</p>
+                                <div id="backupListContainer" class="backup-list-container">
+                                    <div class="backup-list-loading">Lade Backups...</div>
+                                </div>
+                                <div class="backup-actions">
+                                    <button class="btn btn-primary" id="createBackupBtn">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;">
+                                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                                            <polyline points="7,10 12,15 17,10"/>
+                                            <line x1="12" y1="15" x2="12" y2="3"/>
+                                        </svg>
+                                        Jetzt sichern
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Spalte 4: Audit-Log + App-Info + Gefahrenzone -->
+                    <div class="settings-column" id="settingsCol4">
+                        <div class="settings-card admin-only-menu" id="settingsAuditCard" style="display: none;">
+                            <div class="settings-card-header">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                    <line x1="16" y1="13" x2="8" y2="13"/>
+                                    <line x1="16" y1="17" x2="8" y2="17"/>
+                                    <polyline points="10,9 9,9 8,9"/>
+                                </svg>
+                                <h3>Audit-Log</h3>
+                            </div>
+                            <div class="settings-card-body">
+                                <p class="settings-hint">Protokoll aller Änderungen im System.</p>
+                                <button class="btn btn-ghost" id="settingsAuditLogBtn">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;">
+                                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                                        <polyline points="14,2 14,8 20,8"/>
+                                    </svg>
+                                    Audit-Log öffnen
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="settings-card" id="settingsAppInfoCard">
+                            <div class="settings-card-header">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <line x1="12" y1="16" x2="12" y2="12"/>
+                                    <line x1="12" y1="8" x2="12.01" y2="8"/>
+                                </svg>
+                                <h3>App-Info</h3>
+                            </div>
+                            <div class="settings-card-body">
+                                <div class="settings-info-row">
+                                    <span class="settings-info-label">Version</span>
+                                    <span class="settings-info-value" id="appInfoVersion">—</span>
+                                </div>
+                                <div class="settings-info-row">
+                                    <span class="settings-info-label">Bewertungen</span>
+                                    <span class="settings-info-value" id="appInfoBewertungen">—</span>
+                                </div>
+                                <div class="settings-info-row">
+                                    <span class="settings-info-label">Lieferanten</span>
+                                    <span class="settings-info-value" id="appInfoLieferanten">—</span>
+                                </div>
+                                <div class="settings-info-row">
+                                    <span class="settings-info-label">Fragen</span>
+                                    <span class="settings-info-value" id="appInfoFragen">—</span>
+                                </div>
+                                <div class="settings-info-row">
+                                    <span class="settings-info-label">Benutzer</span>
+                                    <span class="settings-info-value" id="appInfoUsers">—</span>
+                                </div>
+                                <div class="settings-info-row">
+                                    <span class="settings-info-label">DB-Größe</span>
+                                    <span class="settings-info-value" id="appInfoDbSize">—</span>
+                                </div>
+                                <div class="settings-info-row">
+                                    <span class="settings-info-label">System</span>
+                                    <span class="settings-info-value" id="appInfoOs">—</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-card settings-card-danger admin-only-menu" id="settingsDangerCard" style="display: none;">
+                            <div class="settings-card-header">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/>
+                                    <line x1="12" y1="9" x2="12" y2="13"/>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"/>
+                                </svg>
+                                <h3>Gefahrenzone</h3>
+                            </div>
+                            <div class="settings-card-body">
+                                <p class="settings-hint">Alle Daten unwiderruflich löschen und Anwendung zurücksetzen.</p>
+                                <button class="btn btn-danger" id="settingsFactoryResetBtn">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;">
+                                        <path d="M3 6h18"/>
+                                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+                                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+                                    </svg>
+                                    Factory Reset
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+
+        <!-- Status Bar -->
+        <footer class="status-bar">
+            <div class="status-message" id="statusMessage"></div>
+            <div class="status-db" id="statusDb"></div>
+        </footer>
+        </div><!-- /main-wrapper -->
+    </div>
+
+    <!-- Modal: Lieferanten verwalten -->
+    <div class="modal-overlay" role="dialog" id="lieferantModal">
+        <div class="modal modal-medium">
+            <h3>Lieferanten verwalten</h3>
+            <div class="modal-content">
+                <div class="modal-field">
+                    <label>Neuen Lieferanten hinzufügen</label>
+                    <div class="input-with-btn">
+                        <input type="text" id="newLieferantInput" class="input" placeholder="Name des Lieferanten">
+                        <button class="btn btn-primary" id="confirmLieferant">Hinzufügen</button>
+                    </div>
+                </div>
+                <div class="modal-field">
+                    <label>Vorhandene Lieferanten</label>
+                    <div class="lieferant-list" id="lieferantList">
+                        <!-- Dynamisch gefüllt -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelLieferant">Schließen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Löschen bestätigen -->
+    <div class="modal-overlay" role="dialog" id="deleteModal">
+        <div class="modal">
+            <h3>Löschen bestätigen</h3>
+            <p>Möchten Sie diese Bewertung wirklich löschen?</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelDelete">Abbrechen</button>
+                <button class="btn btn-danger" id="confirmDelete">Löschen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Erfolg -->
+    <div class="modal-overlay" role="dialog" id="successModal">
+        <div class="modal">
+            <h3>Erfolg</h3>
+            <p id="successMessage">Bewertung erfolgreich abgeschlossen</p>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="confirmSuccess">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Fehler/Warnung -->
+    <div class="modal-overlay" role="dialog" id="errorModal">
+        <div class="modal modal-error">
+            <div class="error-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+            </div>
+            <h3>Hinweis</h3>
+            <p id="errorMessage">Bitte füllen Sie alle Pflichtfelder aus.</p>
+            <div class="modal-actions">
+                <button class="btn btn-danger" id="confirmError">Verstanden</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Allgemeine Bestätigung -->
+    <div class="modal-overlay modal-top" id="confirmModal">
+        <div class="modal">
+            <h3 id="confirmTitle">Bestätigen</h3>
+            <p id="confirmMessage">Möchten Sie fortfahren?</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelConfirm">Abbrechen</button>
+                <button class="btn btn-primary" id="confirmConfirm">Bestätigen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Eingabe-Dialog -->
+    <div class="modal-overlay modal-top" id="promptModal">
+        <div class="modal">
+            <h3 id="promptTitle">Eingabe</h3>
+            <div class="modal-content">
+                <input type="text" id="promptInput" class="input" placeholder="">
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelPrompt">Abbrechen</button>
+                <button class="btn btn-primary" id="confirmPrompt">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Bemerkungen bearbeiten -->
+    <div class="modal-overlay" role="dialog" id="editModal">
+        <div class="modal modal-large">
+            <h3>Bewertung bearbeiten</h3>
+            <div class="modal-content">
+                <div class="modal-info">
+                    <div class="modal-info-item">
+                        <span class="modal-info-label">Lieferant</span>
+                        <span class="modal-info-value" id="editLieferant">-</span>
+                    </div>
+                    <div class="modal-info-item">
+                        <span class="modal-info-label">SE-Team</span>
+                        <span class="modal-info-value" id="editSeTeam">-</span>
+                    </div>
+                    <div class="modal-info-item">
+                        <span class="modal-info-label">Datum</span>
+                        <span class="modal-info-value" id="editDatum">-</span>
+                    </div>
+                    <div class="modal-info-item">
+                        <span class="modal-info-label">Ergebnis</span>
+                        <span class="modal-info-value" id="editErgebnis">-</span>
+                    </div>
+                </div>
+                <!-- Bestellnummer editable field -->
+                <div class="modal-field" style="margin-top: 16px;">
+                    <label>Bestellnummer(n)</label>
+                    <textarea id="editBestellnummer" class="input bestellnummer-textarea" placeholder="Optional (mehrere mit Komma trennen)" rows="1"></textarea>
+                </div>
+                <!-- Dynamic comment fields will be inserted here -->
+                <div id="editKommentareContainer"></div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelEdit">Abbrechen</button>
+                <button class="btn btn-primary" id="confirmEdit">Speichern</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Login -->
+    <div class="modal-overlay" role="dialog" id="loginModal">
+        <div class="modal">
+            <h3 id="loginModalTitle">Login</h3>
+            <div class="modal-content">
+                <div class="modal-field">
+                    <label>Benutzername</label>
+                    <input type="text" id="loginUsername" class="input" placeholder="Benutzername">
+                </div>
+                <div class="modal-field password-field">
+                    <label>Passwort</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="loginPassword" class="input" placeholder="Passwort">
+                        <button type="button" class="password-toggle" data-target="loginPassword" aria-label="Passwort anzeigen">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="login-error" id="loginError"></div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelLogin">Abbrechen</button>
+                <button class="btn btn-primary" id="confirmLogin">Anmelden</button>
+            </div>
+            <div class="login-db-switch" id="loginDbSwitch">
+                <button class="btn-link" id="loginSwitchDb">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/>
+                    </svg>
+                    Andere Datenbank verwenden
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Passwort ändern -->
+    <div class="modal-overlay" role="dialog" id="passwordModal">
+        <div class="modal">
+            <h3>Passwort ändern</h3>
+            <div class="modal-content">
+                <div class="modal-field">
+                    <label>Aktuelles Passwort</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="oldPassword" class="input" placeholder="Aktuelles Passwort">
+                        <button type="button" class="password-toggle" data-target="oldPassword" aria-label="Passwort anzeigen">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-field">
+                    <label>Neues Passwort</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="newPassword" class="input" placeholder="Neues Passwort">
+                        <button type="button" class="password-toggle" data-target="newPassword" aria-label="Passwort anzeigen">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-field">
+                    <label>Neues Passwort bestätigen</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="confirmPassword" class="input" placeholder="Neues Passwort bestätigen">
+                        <button type="button" class="password-toggle" data-target="confirmPassword" aria-label="Passwort anzeigen">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="login-error" id="passwordError"></div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelPassword">Abbrechen</button>
+                <button class="btn btn-primary" id="confirmPasswordChange">Ändern</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: SE-Team verwalten -->
+    <div class="modal-overlay" role="dialog" id="seTeamModal">
+        <div class="modal modal-medium">
+            <h3>SE-Teams verwalten</h3>
+            <div class="modal-content">
+                <div class="modal-field">
+                    <label>Neues SE-Team hinzufügen</label>
+                    <div class="input-with-btn">
+                        <input type="text" id="newSeTeamInput" class="input" placeholder="Name des SE-Teams">
+                        <button class="btn btn-primary" id="confirmSeTeam">Hinzufügen</button>
+                    </div>
+                </div>
+                <div class="modal-field">
+                    <label>Vorhandene SE-Teams</label>
+                    <div class="se-team-list" id="seTeamList">
+                        <!-- Dynamisch gefüllt -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelSeTeam">Schließen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Neue Frage hinzufügen (Admin) -->
+    <div class="modal-overlay" role="dialog" id="frageModal">
+        <div class="modal modal-large">
+            <h3 id="frageModalTitle">Neue Frage hinzufügen</h3>
+            <div class="modal-content">
+                <div class="modal-field">
+                    <label>Gruppe</label>
+                    <div class="custom-dropdown-wrapper" id="frageGruppeWrapper">
+                        <input type="text" id="frageGruppeInput" class="input" readonly placeholder="Gruppe wählen">
+                        <input type="hidden" id="frageGruppe" value="">
+                        <div class="custom-dropdown" id="frageGruppeDropdown">
+                            <!-- Dynamisch gefüllt -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-field">
+                    <label>Frage-Text</label>
+                    <textarea id="frageText" class="input" placeholder="Text der Frage eingeben..." rows="3"></textarea>
+                </div>
+                <div class="modal-field">
+                    <label>Gewichtung (1-10)</label>
+                    <input type="number" id="frageGewichtung" class="input" min="1" max="10" value="1">
+                </div>
+                <div class="modal-field">
+                    <label>Position (optional)</label>
+                    <input type="number" id="fragePosition" class="input" placeholder="Leer = Am Ende einfügen" min="1">
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelFrage">Abbrechen</button>
+                <button class="btn btn-primary" id="confirmFrage">Hinzufügen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Frage bearbeiten (Admin) -->
+    <div class="modal-overlay" role="dialog" id="editFrageModal">
+        <div class="modal modal-large">
+            <h3>Frage bearbeiten</h3>
+            <div class="modal-content">
+                <div class="modal-field">
+                    <label>Frage-Text</label>
+                    <textarea id="editFrageText" class="input" placeholder="Text der Frage eingeben..." rows="3"></textarea>
+                </div>
+                <div class="modal-field">
+                    <label>Gewichtung (1-10)</label>
+                    <input type="number" id="editFrageGewichtung" class="input" min="1" max="10" value="1">
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-danger" id="deleteFrage" style="margin-right: auto;">Löschen</button>
+                <button class="btn btn-secondary" id="cancelEditFrage">Abbrechen</button>
+                <button class="btn btn-primary" id="confirmEditFrage">Speichern</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Benutzer verwalten (Admin) -->
+    <div class="modal-overlay" role="dialog" id="userManagementModal">
+        <div class="modal modal-large">
+            <h3>Benutzer verwalten</h3>
+            <div class="modal-content">
+                <div class="user-management-header">
+                    <button class="btn btn-primary" id="addUserBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; margin-right: 6px;">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                        Neuer Benutzer
+                    </button>
+                </div>
+                <div class="user-list" id="userList">
+                    <!-- Dynamisch gefüllt -->
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="closeUserManagement">Schließen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Neuer Benutzer -->
+    <div class="modal-overlay" role="dialog" id="newUserModal">
+        <div class="modal modal-medium">
+            <h3>Neuen Benutzer anlegen</h3>
+            <div class="modal-content">
+                <div class="modal-field">
+                    <label>Benutzername</label>
+                    <input type="text" id="newUsername" class="input" placeholder="Benutzername eingeben">
+                </div>
+                <div class="modal-field">
+                    <label>Passwort</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="newUserPassword" class="input" placeholder="Passwort eingeben" minlength="8">
+                        <button type="button" class="password-toggle" data-target="newUserPassword" aria-label="Passwort anzeigen">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="modal-field">
+                    <label>Rolle</label>
+                    <div class="custom-dropdown-wrapper" id="newUserRoleWrapper">
+                         <input type="text" id="newUserRoleInput" class="input" readonly placeholder="Rolle wählen" value="Member">
+                         <input type="hidden" id="newUserRole" value="member">
+                        <div class="custom-dropdown" id="newUserRoleDropdown">
+                             <div class="custom-dropdown-item selected" data-value="member">Member</div>
+                            <div class="custom-dropdown-item" data-value="controlling">Controlling</div>
+                            <div class="custom-dropdown-item" data-value="admin">Admin</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelNewUser">Abbrechen</button>
+                <button class="btn btn-primary" id="confirmNewUser">Anlegen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Benutzer bearbeiten -->
+    <div class="modal-overlay" role="dialog" id="editUserModal">
+        <div class="modal modal-medium">
+            <h3>Benutzer bearbeiten</h3>
+            <div class="modal-content">
+                <div class="modal-field">
+                    <label>Benutzername</label>
+                    <input type="text" id="editUsername" class="input" readonly>
+                </div>
+                <div class="modal-field">
+                    <label>Rolle</label>
+                    <div class="custom-dropdown-wrapper" id="editUserRoleWrapper">
+                         <input type="text" id="editUserRoleInput" class="input" readonly placeholder="Rolle wählen" value="Member">
+                         <input type="hidden" id="editUserRole" value="member">
+                        <div class="custom-dropdown" id="editUserRoleDropdown">
+                             <div class="custom-dropdown-item selected" data-value="member">Member</div>
+                            <div class="custom-dropdown-item" data-value="controlling">Controlling</div>
+                            <div class="custom-dropdown-item" data-value="admin">Admin</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-field">
+                    <label>Status</label>
+                    <div class="custom-dropdown-wrapper" id="editUserActiveWrapper">
+                        <input type="text" id="editUserActiveInput" class="input" readonly placeholder="Status wählen" value="Aktiv">
+                        <input type="hidden" id="editUserActive" value="1">
+                        <div class="custom-dropdown" id="editUserActiveDropdown">
+                            <div class="custom-dropdown-item selected" data-value="1">Aktiv</div>
+                            <div class="custom-dropdown-item" data-value="0">Inaktiv</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-field">
+                    <label>Neues Passwort (leer lassen = nicht ändern)</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="editUserNewPassword" class="input" placeholder="Neues Passwort" minlength="8">
+                        <button type="button" class="password-toggle" data-target="editUserNewPassword" aria-label="Passwort anzeigen">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-danger" id="deleteUserBtn" style="margin-right: auto;">Löschen</button>
+                <button class="btn btn-secondary" id="cancelEditUser">Abbrechen</button>
+                <button class="btn btn-primary" id="confirmEditUser">Speichern</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Ziele Management -->
+    <div class="modal-overlay" role="dialog" id="zieleManagementModal">
+        <div class="modal modal-large">
+            <h3>Ziele & Sollwerte verwalten</h3>
+            <div class="modal-content">
+                <div class="ziele-management-header">
+                    <div class="ziele-filter-group">
+                        <label>Quartal</label>
+                        <div class="custom-dropdown-wrapper" id="zieleFilterQuartalWrapper">
+                            <input type="text" id="zieleFilterQuartalInput" class="input" readonly placeholder="Alle Quartale" value="Alle Quartale">
+                            <input type="hidden" id="zieleFilterQuartal" value="">
+                            <div class="custom-dropdown" id="zieleFilterQuartalDropdown"></div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="addNewZielBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                        Neues Ziel
+                    </button>
+                </div>
+                <div class="ziele-list-container" id="zieleListContainer">
+                    <p class="settings-hint">Keine Ziele vorhanden.</p>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="closeZieleManagement">Schließen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Ziel Erstellen/Bearbeiten -->
+    <div class="modal-overlay" role="dialog" id="zielFormModal">
+        <div class="modal modal-medium">
+            <h3 id="zielFormTitle">Neues Ziel erstellen</h3>
+            <div class="modal-content">
+                <div class="modal-field">
+                    <label>Lieferant <span class="required">*</span></label>
+                    <div class="custom-dropdown-wrapper" id="zielLieferantWrapper">
+                        <input type="text" id="zielLieferantInput" class="input" readonly placeholder="Lieferant wählen">
+                        <input type="hidden" id="zielLieferantSelect" value="">
+                        <div class="custom-dropdown" id="zielLieferantDropdown"></div>
+                    </div>
+                </div>
+                <div class="modal-field">
+                    <label>Quartal <span class="required">*</span></label>
+                    <div class="custom-dropdown-wrapper" id="zielQuartalWrapper">
+                        <input type="text" id="zielQuartalInput" class="input" readonly placeholder="Quartal wählen">
+                        <input type="hidden" id="zielQuartalSelect" value="">
+                        <div class="custom-dropdown" id="zielQuartalDropdown"></div>
+                    </div>
+                </div>
+                <div class="modal-field">
+                    <label>Zielwert (%) <span class="required">*</span></label>
+                    <input type="number" id="zielWertInput" class="input" min="0" max="100" step="0.5" placeholder="z.B. 80">
+                </div>
+                <div class="modal-field">
+                    <label>Beschreibung</label>
+                    <textarea id="zielBeschreibungInput" class="input" rows="2" placeholder="Optionale Beschreibung"></textarea>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelZielForm">Abbrechen</button>
+                <button class="btn btn-primary" id="confirmZielForm">Speichern</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Audit-Log -->
+    <div class="modal-overlay" role="dialog" id="auditLogModal">
+        <div class="modal modal-large">
+            <h3>Audit-Log</h3>
+            <div class="modal-content">
+                <div class="audit-filter-toolbar">
+                    <div class="audit-filter-buttons">
+                        <button class="audit-filter-btn active" data-audit-filter="all">Alle</button>
+                        <button class="audit-filter-btn filter-create" data-audit-filter="CREATE">Erstellt</button>
+                        <button class="audit-filter-btn filter-update" data-audit-filter="UPDATE">Geändert</button>
+                        <button class="audit-filter-btn filter-delete" data-audit-filter="DELETE">Gelöscht</button>
+                        <button class="audit-filter-btn filter-login" data-audit-filter="LOGIN_SUCCESS">Login</button>
+                        <button class="audit-filter-btn filter-view" data-audit-filter="VIEW">Angesehen</button>
+                    </div>
+                    <div class="audit-filter-search">
+                        <svg class="audit-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+                        </svg>
+                        <input type="text" class="audit-search-input" id="auditModalSearch" placeholder="Suchen...">
+                    </div>
+                    <span class="audit-filter-count" id="auditModalCount"></span>
+                </div>
+                <div class="audit-log-list" id="auditLogList">
+                    <!-- Dynamisch gefüllt -->
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="closeAuditLog">Schließen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Lieferanten Details (Dashboard) -->
+    <div class="modal-overlay" role="dialog" id="lieferantenDetailModal">
+        <div class="modal modal-medium">
+            <div class="lieferanten-detail-header">
+                <div class="lieferanten-detail-icon" id="lieferantenDetailIcon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                    </svg>
+                </div>
+                <h3 id="lieferantenDetailTitle">Lieferanten</h3>
+            </div>
+            <div class="modal-content">
+                <div class="lieferanten-detail-list" id="lieferantenDetailList">
+                    <!-- Dynamisch gefüllt -->
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="closeLieferantenDetail">Schließen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Custom Date Range (Dashboard) -->
+    <div class="modal-overlay" role="dialog" id="dateRangeModal">
+        <div class="modal modal-date-range">
+            <h3>Benutzerdefinierter Zeitraum</h3>
+            <div class="modal-content">
+                <div class="date-range-pickers">
+                    <!-- Start Date Picker -->
+                    <div class="date-range-picker-group">
+                        <label>Von</label>
+                        <div class="date-picker-wrapper date-range-picker" id="dateRangeStartWrapper">
+                            <input type="text" id="dateRangeStartInput" class="input date-picker-input" readonly placeholder="Startdatum">
+                            <input type="hidden" id="dateRangeStart" value="">
+                            <div class="date-picker-dropdown" id="dateRangeStartDropdown">
+                                <div class="date-picker-header">
+                                    <button type="button" id="dateRangeStartPrevMonth">&lt;</button>
+                                    <span class="date-picker-title" id="dateRangeStartTitle">Januar 2024</span>
+                                    <button type="button" id="dateRangeStartNextMonth">&gt;</button>
+                                </div>
+                                <div class="date-picker-weekdays">
+                                    <span class="date-picker-weekday">Mo</span>
+                                    <span class="date-picker-weekday">Di</span>
+                                    <span class="date-picker-weekday">Mi</span>
+                                    <span class="date-picker-weekday">Do</span>
+                                    <span class="date-picker-weekday">Fr</span>
+                                    <span class="date-picker-weekday">Sa</span>
+                                    <span class="date-picker-weekday">So</span>
+                                </div>
+                                <div class="date-picker-days" id="dateRangeStartDays">
+                                    <!-- Dynamisch gefüllt -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Date Picker -->
+                    <div class="date-range-picker-group">
+                        <label>Bis</label>
+                        <div class="date-picker-wrapper date-range-picker" id="dateRangeEndWrapper">
+                            <input type="text" id="dateRangeEndInput" class="input date-picker-input" readonly placeholder="Enddatum">
+                            <input type="hidden" id="dateRangeEnd" value="">
+                            <div class="date-picker-dropdown" id="dateRangeEndDropdown">
+                                <div class="date-picker-header">
+                                    <button type="button" id="dateRangeEndPrevMonth">&lt;</button>
+                                    <span class="date-picker-title" id="dateRangeEndTitle">Januar 2024</span>
+                                    <button type="button" id="dateRangeEndNextMonth">&gt;</button>
+                                </div>
+                                <div class="date-picker-weekdays">
+                                    <span class="date-picker-weekday">Mo</span>
+                                    <span class="date-picker-weekday">Di</span>
+                                    <span class="date-picker-weekday">Mi</span>
+                                    <span class="date-picker-weekday">Do</span>
+                                    <span class="date-picker-weekday">Fr</span>
+                                    <span class="date-picker-weekday">Sa</span>
+                                    <span class="date-picker-weekday">So</span>
+                                </div>
+                                <div class="date-picker-days" id="dateRangeEndDays">
+                                    <!-- Dynamisch gefüllt -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelDateRange">Abbrechen</button>
+                <button class="btn btn-primary" id="applyDateRange">Anwenden</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Changelog -->
+    <div class="modal-overlay" role="dialog" id="changelogModal">
+        <div class="modal modal-medium">
+            <div class="modal-header-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                    <polyline points="14,2 14,8 20,8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10 9 9 9 8 9"/>
+                </svg>
+            </div>
+            <h3>Neu in Version 2.0.0</h3>
+            <div class="modal-content">
+                <div class="changelog-list">
+                    <div class="changelog-item">
+                        <span class="badge badge-new">NEU</span>
+                        <div class="changelog-text">
+                            <strong>Splash Screen</strong>
+                            <p>Eleganter Splash Screen mit Logo und Ladeanimation beim Anwendungsstart.</p>
+                        </div>
+                    </div>
+                    <div class="changelog-item">
+                        <span class="badge badge-new">NEU</span>
+                        <div class="changelog-text">
+                            <strong>Foreign Key Migration</strong>
+                            <p>Lieferanten und SE-Teams werden über IDs verknüpft. Umbenennung und kaskadierendes Löschen möglich.</p>
+                        </div>
+                    </div>
+                    <div class="changelog-item">
+                        <span class="badge badge-new">NEU</span>
+                        <div class="changelog-text">
+                            <strong>Quartalsbericht Redesign</strong>
+                            <p>Übersichtlicherer Quartalsbericht-PDF mit fortlaufendem Layout und farbcodierten Statistiken.</p>
+                        </div>
+                    </div>
+                    <div class="changelog-item">
+                        <span class="badge badge-new">NEU</span>
+                        <div class="changelog-text">
+                            <strong>Backup Audit-Logging</strong>
+                            <p>Erstellen, Wiederherstellen und Löschen von Backups wird im Audit-Log protokolliert.</p>
+                        </div>
+                    </div>
+                    <div class="changelog-item">
+                        <span class="badge badge-fix">FIX</span>
+                        <div class="changelog-text">
+                            <strong>Kritischer Deadlock behoben</strong>
+                            <p>Ein potenzieller Deadlock bei Vorquartals-Maßnahmen wurde behoben.</p>
+                        </div>
+                    </div>
+                    <div class="changelog-item">
+                        <span class="badge badge-fix">FIX</span>
+                        <div class="changelog-text">
+                            <strong>Audit-Log Verbesserungen</strong>
+                            <p>Vollständige Aktions-Labels, neue Filterkategorien und korrigierte Anzeige.</p>
+                        </div>
+                    </div>
+                    <div class="changelog-item">
+                        <span class="badge badge-fix">FIX</span>
+                        <div class="changelog-text">
+                            <strong>Sicherheit &amp; Stabilität</strong>
+                            <p>Größenlimit für Exporte, sichere Transaktionen, Null-Checks und 0 Compiler-Warnings.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="closeChangelog">Verstanden</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: About -->
+    <div class="modal-overlay" role="dialog" id="aboutModal">
+        <div class="modal modal-about">
+            <div class="about-content">
+                <div class="about-logo">
+                    <img src="logo-big.png" alt="SEVALSystem" class="about-logo-img">
+                    <div class="about-subtitle">Supplier Evaluation System</div>
+                </div>
+                <div class="about-info">
+                    <div class="about-version">Version <span id="appVersion">2.0.0</span></div>
+                    <div class="about-divider"></div>
+                    <div class="about-author">
+                        <span class="about-label">Entwickelt von</span>
+                        <span class="about-name">Michael Schlosser</span>
+                    </div>
+                    <div class="about-year">© 2026 Michael Schlosser · MIT-Lizenz</div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="closeAbout">Schließen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: CSV Import (Phase 4.1) -->
+    <div class="modal-overlay" role="dialog" id="csvImportModal">
+        <div class="modal modal-wide">
+            <div class="modal-header">
+                <h3>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                        <polyline points="17,8 12,3 7,8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                    CSV-Import
+                </h3>
+                <button class="modal-close-btn" id="csvImportCloseBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Step 1: File Upload -->
+                <div class="csv-import-step" id="csvImportStep1">
+                    <div class="csv-dropzone" id="csvDropzone">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:48px;height:48px;color:var(--text-tertiary);">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                            <polyline points="14,2 14,8 20,8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                        </svg>
+                        <p>CSV-Datei hierher ziehen oder klicken</p>
+                        <span class="csv-dropzone-hint">SEVALSystem-CSV-Format (Semikolon-getrennt)</span>
+                    </div>
+                </div>
+                <!-- Step 2: Preview -->
+                <div class="csv-import-step" id="csvImportStep2" style="display:none;">
+                    <div class="csv-preview-info" id="csvPreviewInfo"></div>
+                    <div class="csv-preview-table-wrapper">
+                        <table class="csv-preview-table" id="csvPreviewTable">
+                            <thead id="csvPreviewHead"></thead>
+                            <tbody id="csvPreviewBody"></tbody>
+                        </table>
+                    </div>
+                    <div class="csv-import-options">
+                        <label class="csv-option">
+                            <input type="checkbox" id="csvSkipDuplicates" checked>
+                            Duplikate überspringen (gleicher Lieferant + SE-Team + Datum)
+                        </label>
+                    </div>
+                </div>
+                <!-- Step 3: Result -->
+                <div class="csv-import-step" id="csvImportStep3" style="display:none;">
+                    <div class="csv-import-result" id="csvImportResult"></div>
+                </div>
+            </div>
+            <div class="modal-footer" id="csvImportFooter">
+                <button class="btn btn-secondary" id="csvImportCancelBtn">Abbrechen</button>
+                <button class="btn btn-primary" id="csvImportBtn" style="display:none;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;margin-right:6px;">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                        <polyline points="17,8 12,3 7,8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                    Importieren
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: PDF Export Preview -->
+    <div class="modal-overlay" role="dialog" id="pdfModal">
+        <div class="modal modal-pdf">
+            <div class="pdf-preview" id="pdfPreview">
+                <!-- PDF Header -->
+                <div class="pdf-header">
+                    <div class="pdf-logo">
+                        <img src="logo-big.png" alt="SEVALSystem" class="pdf-logo-img">
+                    </div>
+                    <div class="pdf-meta">
+                        <div class="pdf-meta-item">
+                            <span class="pdf-meta-label">Bewertungsdatum</span>
+                            <span class="pdf-meta-value" id="pdfDatum">-</span>
+                        </div>
+                        <div class="pdf-meta-item">
+                            <span class="pdf-meta-label">Berichts-Nr.</span>
+                            <span class="pdf-meta-value" id="pdfBerichtNr">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Supplier Info -->
+                <div class="pdf-info-section">
+                    <div class="pdf-info-row">
+                        <div class="pdf-info-box">
+                            <span class="pdf-info-label">Lieferant</span>
+                            <span class="pdf-info-value" id="pdfLieferant">-</span>
+                        </div>
+                        <div class="pdf-info-box">
+                            <span class="pdf-info-label">SE-Team</span>
+                            <span class="pdf-info-value" id="pdfSeTeam">-</span>
+                        </div>
+                        <div class="pdf-info-box">
+                            <span class="pdf-info-label">Bestellnummer</span>
+                            <span class="pdf-info-value" id="pdfBestellnummer">-</span>
+                        </div>
+                        <div class="pdf-info-box pdf-result-box">
+                            <span class="pdf-info-label">Gesamtergebnis</span>
+                            <span class="pdf-info-value pdf-result" id="pdfErgebnis">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chart Section -->
+                <div class="pdf-chart-section">
+                    <h3>Bewertungsübersicht nach Kategorien</h3>
+                    <div class="pdf-chart-container">
+                        <canvas id="pdfChart" width="400" height="180"></canvas>
+                        <div class="pdf-chart-legend" id="pdfChartLegend"></div>
+                    </div>
+                </div>
+
+                <!-- Details Section -->
+                <div class="pdf-details-section">
+                    <h3>Detailbewertung</h3>
+                    <div class="pdf-details-table" id="pdfDetailsTable">
+                        <!-- Dynamisch gefüllt -->
+                    </div>
+                </div>
+
+                <!-- Comments Section -->
+                <div class="pdf-comments-section" id="pdfCommentsSection">
+                    <h3>Bemerkungen</h3>
+                    <div class="pdf-comments" id="pdfComments">
+                        <!-- Dynamisch gefüllt -->
+                    </div>
+                </div>
+
+                <!-- Maßnahmen Section -->
+                <div class="pdf-massnahmen-section" id="pdfMassnahmenSection">
+                    <h3>Maßnahmen für nächstes Quartal</h3>
+                    <div class="pdf-massnahmen" id="pdfMassnahmen">
+                        <!-- Dynamisch gefüllt -->
+                    </div>
+                </div>
+
+                <!-- Signature Section -->
+                <div class="pdf-signature-section">
+                    <h3>Unterschriften</h3>
+                    <div class="pdf-signatures">
+                        <div class="pdf-signature-box">
+                            <div class="pdf-signature-line"></div>
+                            <span class="pdf-signature-label">Datum, Unterschrift Bewerter</span>
+                        </div>
+                        <div class="pdf-signature-box">
+                            <div class="pdf-signature-line"></div>
+                            <span class="pdf-signature-label">Datum, Unterschrift Lieferant</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="pdf-footer">
+                    <span>Erstellt mit SEVALSystem - Supplier Evaluation System</span>
+                    <span id="pdfFooterDate">-</span>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelPdf">Schließen</button>
+                <button class="btn btn-primary" id="downloadPdf">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;margin-right:6px;">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                        <polyline points="7,10 12,15 17,10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    PDF herunterladen
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Willkommen / Ersteinrichtung -->
+    <div class="modal-overlay welcome-modal" id="welcomeModal">
+        <div class="modal modal-welcome">
+            <div class="welcome-header">
+                <div class="welcome-logo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                    </svg>
+                </div>
+                <h2>Willkommen bei SEVALSystem</h2>
+                <p class="welcome-subtitle">Supplier Evaluation System</p>
+            </div>
+            <div class="welcome-content">
+                <p>Bevor Sie beginnen, wählen Sie bitte einen Speicherort für Ihre Bewertungsdatenbank.</p>
+                <div class="welcome-path-info">
+                    <div class="path-label">Aktueller Speicherort:</div>
+                    <div class="path-value" id="welcomeDbPath">Nicht festgelegt</div>
+                </div>
+                <button class="btn btn-primary welcome-btn" id="selectDbPath">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/>
+                    </svg>
+                    Speicherort wählen
+                </button>
+            </div>
+            <div class="welcome-footer">
+                <button class="btn btn-secondary" id="welcomeUseDefault">Standard verwenden</button>
+                <button class="btn btn-primary" id="welcomeConfirm" disabled>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    Starten
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart.js for charts (local) -->
+    <script src="lib/chart.umd.min.js"></script>
+
+    <!-- PDF Generation Libraries (local) -->
+    <script src="lib/html2canvas.min.js"></script>
+    <script src="lib/jspdf.umd.min.js"></script>
+
+    <script src="app.js"></script>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+</body>
+</html>
