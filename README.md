@@ -21,6 +21,10 @@ Alle Daten liegen in einer einzigen SQLite-Datei auf dem eigenen Rechner oder ei
 
 > **Download:** Fertige Installer für Windows (`.msi`/`.exe`) und Linux (`.deb`/`.AppImage`) liegen unter [Releases](https://github.com/y0uall/sevalsystem/releases/latest). Standard-Login `admin` / `admin123`, bitte sofort ändern.
 
+## Hintergrund
+
+SEVALSystem ist als Nebenprojekt entstanden, um die subjektive Excel-Liste meiner damaligen Abteilung durch ein nachvollziehbares, modernes Werkzeug zu ersetzen. Mein ehemaliger Arbeitgeber wusste das nicht zu schätzen und hat die Anwendung nie eingeführt. Statt sie in der Schublade verstauben zu lassen, gibt es sie jetzt als Open Source. Vielleicht hat ein anderes Unternehmen mehr Freude daran. Happy Evaluating – viel Spaß damit!
+
 ---
 
 ## Screenshots
