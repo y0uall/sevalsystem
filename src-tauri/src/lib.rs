@@ -3979,7 +3979,7 @@ fn get_app_info_cmd(db: State<Database>) -> Result<AppInfo, String> {
     let os_info = format!("{} {}", std::env::consts::OS, std::env::consts::ARCH);
 
     Ok(AppInfo {
-        version: "2.0.0".to_string(),
+        version: env!("CARGO_PKG_VERSION").to_string(),
         db_path,
         db_size_bytes: db_size,
         bewertungen_count,

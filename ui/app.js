@@ -6,7 +6,7 @@ const { invoke } = window.__TAURI__.core;
 // ============================================================================
 // App Version (zentral definiert, muss nur hier aktualisiert werden)
 // ============================================================================
-const APP_VERSION = '2.0.0';
+const APP_VERSION = '2.0.1';
 
 // ============================================================================
 // Security: HTML Escape Function (XSS Prevention)

@@ -1,28 +1,28 @@
 [package]
 name = "sevalsys"
-version = "2.0.0"
+version = "2.0.1"
 description = "SEVALSystem – Desktop-Anwendung zur quartalsweisen Lieferantenbewertung"
 authors = ["Michael Schlosser"]
 license = "MIT"
 edition = "2024"
-# repository = "https://github.com/<dein-benutzername>/sevalsystem"
+repository = "https://github.com/y0uall/sevalsystem"
 
 [lib]
 name = "sevalsys_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]
-tauri-build = { version = "2.5.5", features = [] }
+tauri-build = { version = "2.7.4", features = [] }
 
 [dependencies]
-tauri = { version = "2.10.2", features = [] }
-tauri-plugin-shell = "2.3.5"
-tauri-plugin-dialog = "2.6.0"
+tauri = { version = "2.12.5", features = [] }
+tauri-plugin-shell = "2.6.0"
+tauri-plugin-dialog = "2.8.4"
 serde = { version = "1", features = ["derive"] }
-serde_json = "1.0.149"
-rusqlite = { version = "0.38.0", features = ["bundled"] }
-chrono = { version = "0.4.44", features = ["serde"] }
+serde_json = "1.0.154"
+rusqlite = { version = "0.41.1", features = ["bundled"] }
+chrono = { version = "0.4.45", features = ["serde"] }
 directories = "6.0.0"
-base64 = "0.22.1"
-bcrypt = "0.18.0"
-rust_xlsxwriter = "0.94"
+base64 = "0.23.1"
+bcrypt = "0.19.3"
+rust_xlsxwriter = "0.102"
