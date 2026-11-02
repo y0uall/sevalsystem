@@ -7,6 +7,7 @@
   <img src="https://img.shields.io/badge/Tauri-2.x-24C8D8?logo=tauri&logoColor=white" alt="Tauri 2">
   <img src="https://img.shields.io/badge/Rust-Edition_2024-000000?logo=rust&logoColor=white" alt="Rust">
   <img src="https://img.shields.io/badge/Windows%20%7C%20Linux%20%7C%20macOS-Desktop-6c757d" alt="Plattformen">
+  <img src="https://img.shields.io/badge/Status-abgeschlossen%20%26%20archiviert-6c757d" alt="Status: abgeschlossen und archiviert">
   <a href="https://github.com/y0uall/sevalsystem/actions/workflows/ci.yml"><img src="https://github.com/y0uall/sevalsystem/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
 </p>
 
@@ -18,12 +19,14 @@ Alle Daten liegen in einer einzigen SQLite-Datei auf dem eigenen Rechner oder ei
 
 > **English summary:** SEVALSystem is an offline desktop app (Tauri 2 + Rust + vanilla JS) for quarterly supplier evaluations: weighted questionnaires, dashboards and trends, action tracking, targets, PDF/XLSX/CSV export, role-based access and an audit trail. All data stays in a local SQLite file. The UI is currently German only. Licensed under MIT.
 
+> **Download:** Fertige Installer für Windows (`.msi`/`.exe`) und Linux (`.deb`/`.AppImage`) liegen unter [Releases](https://github.com/y0uall/sevalsystem/releases/latest). Standard-Login `admin` / `admin123`, bitte sofort ändern.
+
 ---
 
 ## Screenshots
 
 <p align="center">
-  <img src="screenshots/dashboard.png" alt="Dashboard mit Kennzahlen, Top-Performern, offenen Maßnahmen und Zielen" width="900">
+  <img src="screenshots/dashboard.png" alt="Dashboard mit Kennzahlen, Top-Performern, offenen Maßnahmen und Zielen">
 </p>
 
 <table>
@@ -184,7 +187,7 @@ cargo test      # Unit- und Integrationstests des Backends
 cargo clippy    # statische Analyse (CI: ohne Warnungen)
 ```
 
-Bei jedem Push laufen Tests und Clippy per GitHub Actions auf Ubuntu und Windows. Ein Tag der Form `v2.0.1` erzeugt zusätzlich Installer für Windows (`.msi`, `.exe`) und Linux (`.deb`, `.AppImage`) als Release-Entwurf.
+Die Workflows unter `.github/workflows/` führen bei jedem Push Tests und Clippy auf Ubuntu und Windows aus und bauen bei einem Tag der Form `v2.0.1` Installer für Windows (`.msi`, `.exe`) und Linux (`.deb`, `.AppImage`) als Release-Entwurf. In einem Fork sind sie ohne Anpassung nutzbar.
 
 ---
 
@@ -224,9 +227,9 @@ In der App über **„Andere Datenbank verwenden"** im Login-Dialog (oder *Einst
 
 SEVALSystem ist eine reine Offline-Anwendung. Es werden keine Daten an Dritte übertragen, es gibt keine Telemetrie, kein Auto-Update und keine Cloud-Komponente. Sämtliche Bewertungs- und Personendaten verbleiben in der lokalen Datenbank unter der Kontrolle des Betreibers.
 
-## Mitwirken
+## Projektstatus
 
-Beiträge sind willkommen – Fehlerberichte und Vorschläge bitte als Issue, Änderungen als Pull Request. Vor größeren Umbauten empfiehlt sich eine kurze Abstimmung im Issue-Tracker. Die Oberfläche ist derzeit ausschließlich deutschsprachig; eine Mehrsprachigkeit wäre ein sinnvoller nächster Schritt.
+SEVALSystem ist abgeschlossen und wird nicht weiterentwickelt. Das Repository ist **archiviert** und damit schreibgeschützt; Issues und Pull Requests sind deshalb nicht möglich. **Forks sind ausdrücklich erwünscht:** Die MIT-Lizenz erlaubt es, die Anwendung frei zu übernehmen, anzupassen und weiterzuführen, auch kommerziell. Naheliegende nächste Schritte für einen Fork wären eine mehrsprachige Oberfläche und die Aufteilung von `app.js` in Module.
 
 ## Lizenz
 
